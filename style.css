@@ -1,0 +1,359 @@
+:root {
+  --main-bg-color: #262525;
+  --main-text-color: #ffffff;
+  --main-border-color: #ffffff9a;
+}
+
+@font-face {
+  font-family: "Roman";
+  src: url(./fonts/NeueHaasDisplay-Roman.woff) format("woff");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roman";
+  font-weight: 400;
+  color: var(--main-text-color);
+  list-style: none;
+}
+
+html,
+body {
+  background-color: var(--main-bg-color);
+}
+
+h3 {
+  font-size: 2em;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 80px;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  z-index: 2;
+}
+
+nav ul {
+  width: 350px;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+li {
+  cursor: pointer;
+}
+
+li:hover {
+  color: #fcc42a;
+}
+
+.generate-code-btn {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  background-color: #fcc42a;
+  color: var(--main-bg-color);
+  height: 100%;
+  border: 1px solid black;
+}
+
+.generate-code-btn:hover {
+  color: var(--main-bg-color);
+  opacity: 0.8;
+}
+
+main {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100vh;
+  padding: 10vh 10vw;
+  max-width: 1400px;
+}
+
+.grid-container {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+.cell {
+  border: 1px solid var(--main-text-color);
+  background-color: rgba(255, 255, 255, 0.324);
+  user-select: none;
+}
+
+.cell:hover {
+  opacity: 0.5 !important;
+}
+
+.grid-item {
+  position: relative;
+  border: 1px solid #fcc42a;
+  background-color: var(--main-bg-color);
+}
+
+.grid-item p {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.208);
+}
+
+.remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.remove span:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 100%;
+  height: 1px;
+  background-color: var(--main-text-color);
+}
+
+.remove span:nth-child(2) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  height: 1px;
+  background-color: var(--main-text-color);
+}
+
+.selection-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.26);
+  pointer-events: none;
+}
+
+.settings-menu {
+  position: fixed;
+  bottom: -400px;
+  height: 400px;
+  width: 100%;
+  background-color: #262525cf;
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--main-text-color);
+  transition: all 0.5s;
+}
+
+.settings-menu.active {
+  bottom: 0px;
+}
+
+.settings-menu-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  min-width: 600px;
+  padding: 20px 10vw;
+}
+
+.settings-bar {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.close span:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.close span:nth-child(2) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.form-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+form {
+  margin-right: 20px;
+}
+
+label {
+  margin-top: 20px;
+}
+
+input {
+  background-color: var(--main-bg-color);
+  margin-top: 10px;
+  width: 100px;
+  border: none;
+  border-bottom: 1px solid var(--main-text-color);
+}
+
+#generate {
+  width: 150px;
+  height: 50px;
+  border: 1px solid var(--main-text-color);
+  cursor: pointer;
+}
+
+/* Code modal */
+
+.code-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  max-width: 800px;
+  background-color: var(--main-bg-color);
+  padding: 50px;
+  border: 1px solid var(--main-border-color);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.code-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cm-container {
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.close-modal {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.close-modal span:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 100%;
+  height: 1px;
+  background-color: var(--main-text-color);
+}
+
+.close-modal span:nth-child(2) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  height: 1px;
+  background-color: var(--main-text-color);
+}
+
+.tabs {
+  position: relative;
+  display: flex;
+  width: 100%;
+  background-color: var(--main-bg-color);
+  height: 40px;
+  border-bottom: 1px solid var(--main-border-color);
+  /* background-color: orange; */
+}
+
+.tabs > div {
+  width: 100px;
+  height: 100%;
+  text-align: center;
+  border: 1px solid var(--main-border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+}
+
+#html-code,
+#css-code {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  border-right: 1px solid var(--main-border-color);
+  border-left: 1px solid var(--main-border-color);
+  background-color: #131313;
+  padding: 10px 10px 10px 10px;
+}
+
+#css-code {
+  display: none;
+}
+
+/* Code Snippets */
+
+.highlight {
+  color: #fcc42a;
+}
+
+.param-highlight {
+  color: #fcc42a;
+  margin-left: 20px;
+}
+
+.html-param-highlight {
+  margin-left: 20px;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1>GRID GENERATOR</h1>
+        <ul>
+            <li class="toggle-grid">Guide</li>
+            <li class="settings-btn">Settings</li>
+            <div class="generate-code-btn">Generate Code</div>
+        </ul>
+    </nav>
+    
+    <main></main>
+    <div class="selection-area"></div>
+    <div class="settings-menu">
+        <div class="settings-menu-container">
+            <div class="settings-bar">
+                <h3>Grid Settings</h3>
+                <div class="close">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <form id="grid-settings-form" action="">
+                    <label for="">Rows</label></br>
+                    <input id="row-amount" type="text"></br></br>
+                    <label for="">Columns</label></br>
+                    <input id="column-amount" type="text"></br></br>
+                    <input id="generate" type="submit" value="Generate Grid">
+                </form>
+                <form action="">
+                    <label for="">Row Gap</label></br>
+                    <input id="row-gap-amount" type="text"></br></br>
+                    <label for="">Column Gap</label></br>
+                    <input id="column-gap-amount" type="text"></br>
+                </form>
+                <form action="">
+                    <label for="">Container width</label></br>
+                    <input id="container-width" type="text"></br></br>
+                    <label for="">Container height</br>
+                    <input id="container-height" type="text"></br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="code-modal">
+        <div class="close-modal">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="tabs">
+            <div id="html-tab">HTML</div>
+            <div id="css-tab">CSS</div>
+        </div>
+        <div class="cm-container">
+            
+            <div id="html-code"></div>
+            <div id="css-code"></div>
+        </div>
+    </div>
+    
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
