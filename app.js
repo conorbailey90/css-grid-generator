@@ -11,6 +11,7 @@ const toggleGuideGrid = document.querySelector('.toggle-grid');
 const settingsMenu = document.querySelector('.settings-menu');
 const settingsBtn = document.querySelector('.settings-btn');
 const generateCodeBtn = document.querySelector('.generate-code-btn');
+const copyBtn = document.querySelector('.copy');
 const close = document.querySelector('.close');
 const codeModal = document.querySelector('.code-modal');
 const closeModal = document.querySelector('.close-modal');
@@ -18,6 +19,7 @@ const HTMLTab = document.getElementById('html-tab');
 const CSSTab = document.getElementById('css-tab');
 const HTMLCode = document.getElementById('html-code');
 const CSSCode = document.getElementById('css-code');
+const overlay = document.querySelector('.overlay');
 
 let hideGuideGrid = false;
 let startCell = {row: '', col: ''};
@@ -26,6 +28,7 @@ let cellArray = [];
 let gridItemArray = [];
 
 generateCodeBtn.addEventListener('click', generateCode);
+copyBtn.addEventListener('click', copyToClipboard)
 closeModal.addEventListener('click', closeCodeModal);
 HTMLTab.addEventListener('click', () => {
     openTab('HTML');
@@ -288,15 +291,20 @@ function generateCSSCode(){
 
 function generateCode(){
     codeModal.classList.add('active');
+    overlay.classList.add('active')
     openTab('HTML');
 }
 
 function closeCodeModal(){
+    overlay.classList.remove('active');
     codeModal.classList.remove('active');
 }
 
+let currentTab = 'HTML';
+
 function openTab(tab) {
     if(tab === 'HTML'){
+        currentTab = 'HTML';
         try{
             CSSCode.style.display = 'none';
         }catch(e){
@@ -305,6 +313,7 @@ function openTab(tab) {
         HTMLCode.style.display = 'block';
         generateHTMLCode();
     }else if(tab === 'CSS'){
+        currentTab = 'CSS';
         try{
             HTMLCode.style.display = 'none';
         }catch(e){
@@ -314,3 +323,25 @@ function openTab(tab) {
         generateCSSCode();
     }
   }
+
+  function copyToClipboard(){
+      let text;
+      let code;
+      if(currentTab === 'HTML'){
+        text = HTMLCode.innerText;
+        code = 'HTML code snippet';
+      }else if (currentTab === 'CSS'){
+        text = CSSCode.innerText;
+        code = 'CSS code snippet'
+      }
+
+      navigator.clipboard.writeText(text).then(() => {
+        console.log('Async: Copying to clipboard was successful!');
+        alert(`${code} copied to clipboard.`);
+      }, err => {
+        console.error('Async: Could not copy text: ', err);
+        alert('Something went wrong. Please try again.')
+      }); 
+  }
+
+  

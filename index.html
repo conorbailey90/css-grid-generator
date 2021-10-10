@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CSS Grid Generator</title>
 </head>
 <body>
     <nav>
-        <h1>GRID GENERATOR</h1>
+        <h1>CSS Grid Generator</h1>
         <ul>
             <li class="toggle-grid">Guide</li>
             <li class="settings-btn">Settings</li>
             <div class="generate-code-btn">Generate Code</div>
         </ul>
     </nav>
-    
+
     <main></main>
     <div class="selection-area"></div>
     <div class="settings-menu">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-
+    <div class="overlay"></div>
     <div class="code-modal">
         <div class="close-modal">
             <span></span>
@@ -63,9 +63,11 @@
             <div id="css-tab">CSS</div>
         </div>
         <div class="cm-container">
-            
             <div id="html-code"></div>
             <div id="css-code"></div>
+        </div>
+        <div class="copy">
+            Copy to Clipboard
         </div>
     </div>
     
